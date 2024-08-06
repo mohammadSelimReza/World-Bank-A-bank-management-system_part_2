@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block main %}
+  
+<h1 class="text-center text-3xl font-bold">All loan requested </h1>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg w-2/3 mx-auto pt-10">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Loan ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Loan Ammount
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Loan Approved
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in loans %}
+                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{loan.id}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{loan.amount}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{loan.loan_approve}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {% if loan.loan_approve %}
+                        <a class="font-bold bg-red-900 text-white hover:text-blue-900 hover:bg-white border border-blue-900 font-bold px-4 py-2 rounded-lg" href='{% url "pay_loan" loan.id %}'>Pay</a>
+                        {% else %}
+                        <p class="font-bold text-red-700 bg-red-100">Loan Pending</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock main %}

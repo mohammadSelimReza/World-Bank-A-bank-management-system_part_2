@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block main %}
+    {% load crispy_forms_tags %}
+    <form method="post" class="mx-auto w-1/2 my-12" novalidate>
+        <!-- {{form | crispy }} -->
+         <h1 class="text-center text-2xl font-bold">{{type}} </h1>
+         {% csrf_token %}
+         {% for fm in form %}
+           {{fm.label_tag}}
+           {{fm}}
+           {{fm.errors|striptags }}
+           <br>
+         {% endfor %}
+         {% if type == 'Update Your Profile' %}
+          <div class="flex justify-center">
+            <a href="{% url 'updatePass' %}">
+              <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-4">Change Your Password</button>
+            </a>
+          </div>
+          <br>
+         {% endif %}
+         <div class="flex justify-center">
+          <button
+          type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-4"
+        >
+          {{btn_type}}
+        </button>
+         </div>
+      </form>
+{% endblock main %}

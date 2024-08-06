@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+  <section class="registration-form bg-sky-500">
+    <!-- non-field error -->
+     {% if form.non_field_errors %}
+       {% for error in form.non_field_errors %}
+         <p>Error!</p>
+         <p>{{error}} </p>
+       {% endfor %}
+     {% endif %}
+     <!-- done -->
+      <div class="form-container">
+        <h1 class="text-center text-2xl font-bold">Sign Up</h1>
+        <div class="flex justify-center my-4">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% for hidden_field in form.hidden_fields %}
+                  {{hidden_field.errors}}
+                  {{hidden_field}}
+                {% endfor %}
+                <div>
+                  <div class="flex">
+                    <label for="form.username.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.username.label}} : </label>
+                    {{form.username}}
+                  </div>
+                  {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                      <p class="text-red-600 font-semibold" >{{error}} </p>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="flex my-4">
+                  <!-- first name: -->
+                  <div class="mr-4">
+                    <div class="flex">
+                      <label for="form.first_name.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.first_name.label}} : </label>
+                      {{form.first_name}}
+                    </div>
+                    {% if form.first_name.errors %}
+                      {% for error in form.first_name.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- last name: -->
+                  <div>
+                    <div class="flex">
+                      <label for="form.last_name.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.last_name.label}} : </label>
+                      {{form.last_name}}
+                    </div>
+                    {% if form.last_name.errors %}
+                      {% for error in form.last_name.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="flex my-4">
+                  <!-- first name: -->
+                  <div class="mr-4">
+                    <div class="flex">
+                      <label for="form.birth_date.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.birth_date.label}} : </label>
+                      {{form.birth_date}}  
+                    </div>
+                    
+                    {% if form.birth_date.errors %}
+                      {% for error in form.birth_date.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- last name: -->
+                  <div>
+                    <div class="flex">
+                      <label for="form.gender.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.gender.label}} : </label>
+                      {{form.gender}}
+                    </div>
+                    
+                    {% if form.gender.errors %}
+                      {% for error in form.gender.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="flex my-4">
+                  <!-- first name: -->
+                  <div class="mr-4">
+                    <div class="flex">
+                      <label for="form.account_type.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.account_type.label}} : </label>
+                      {{form.account_type}}
+                    </div>
+                    {% if form.account_type.errors %}
+                      {% for error in form.account_type.errors %}
+                        <p class="text-red-600 font-semibold"> {{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- email -->
+                  <div class="mr-4">
+                    <div class="flex">
+                      <label for="form.email.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.email.label}} : </label>
+                      {{form.email}}
+                    </div>
+                    {% if form.email.errors %}
+                      {% for error in form.email.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="flex my-4">
+                  <!-- first name: -->
+                  <div class="mr-4">
+                    <div class="flex">
+                      <label for="form.street_address.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.street_address.label}} : </label>
+                      {{form.street_address}}
+                    </div>
+                    {% if form.street_address.errors %}
+                      {% for error in form.street_address.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- last name: -->
+                  <div>
+                    <div class="flex">
+                      <label for="form.city.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.city.label}} : </label>
+                      {{form.city}}
+                    </div>
+                    {% if form.city.errors %}
+                      {% for error in form.city.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="flex my-4">
+                  <!-- first name: -->
+                  <div class="mr-4">
+                    <div class="flex">
+                      <label for="form.postal_code.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.postal_code.label}} : </label>
+                      {{form.postal_code}}
+                    </div>
+                    {% if form.postal_code.errors %}
+                      {% for error in form.postal_code.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- last name: -->
+                  <div>
+                    <div class="flex">
+                      <label for="form.country.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.country.label}} : </label>
+                      {{form.country}}
+                    </div>
+                    {% if form.country.errors %}
+                      {% for error in form.country.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <!-- password -->
+                <div class="flex my-4">
+                  <!-- first name: -->
+                  <div class="mr-4">
+                    <div class="flex">
+                      <label for="form.password1.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.password1.label}} : </label>
+                      {{form.password1}}
+                    </div>
+                    {% if form.password1.errors %}
+                      {% for error in form.password1.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- last name: -->
+                  <div>
+                    <div class="flex">
+                      <label for="form.password2.id_for_label" class="uppercase font-bold text-sm mr-4">{{form.password2.label}} : </label>
+                      {{form.password2}}
+                    </div>
+                    {% if form.password2.errors %}
+                      {% for error in form.password2.errors %}
+                        <p class="text-red-600 font-semibold">{{error}} </p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <!-- Register button -->
+                <div class="flex justify-center my-8">
+                  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Register</button>
+                </div>
+            </form>
+        </div>
+      </div>
+  </section>
+{% endblock main %}

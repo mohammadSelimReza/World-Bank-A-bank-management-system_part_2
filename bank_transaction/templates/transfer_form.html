@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="w-1/2 mx-auto">
+    <h1 class="text-center text-2xl font-bold">{{ title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="from_account">From Account</label>
+            <input class="shadow appearance-none border rounded w-full my-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="from_account" id="from_account" type="text" value="{{ form.from_account.value }}" readonly>
+        </div>
+        {% if form.from_account.errors %}
+            {% for error in form.from_account.errors %}
+            <p class="text-red-600 text-sm">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        <div>
+            <label for="to_account">To Account</label>
+            <input class="shadow appearance-none border rounded w-full my-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="to_account" id="to_account" type="number" required placeholder="Enter the recipient's account number">
+        </div>
+        {% if form.to_account.errors %}
+            {% for error in form.to_account.errors %}
+            <p class="text-red-600 text-sm">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        <div>
+            <label for="amount">Amount</label>
+            <input class="shadow appearance-none border rounded w-full my-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="amount" id="amount" type="number" required placeholder="Amount">
+        </div>
+        {% if form.amount.errors %}
+            {% for error in form.amount.errors %}
+            <p class="text-red-600 text-sm">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        <button class="bg-blue-900 text-white hover:text-blue-900 hover:bg-white border border-blue-900 font-bold px-4 py-2 rounded-lg" type="submit">
+            Transfer Now
+        </button>
+    </form>
+</section>
+{% endblock main %}

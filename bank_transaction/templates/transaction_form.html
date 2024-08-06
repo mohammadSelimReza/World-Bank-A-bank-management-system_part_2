@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block main %} 
+<section class="w-1/2 mx-auto">        
+    <h1 class="text-center text-2xl font-bold">{{ title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            {% if title == 'Request For Loan' %}
+            <div class="flex justify-between">
+                <label for="amount">Amount</label>
+                <a class="font-bold text-blue" href="{% url 'loan_list' %}">View all requested loans</a>
+            </div>              
+            {% else %}
+            <label for="amount">Amount</label>
+            {% endif %}
+            <input class="shadow appearance-none border rounded w-full my-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="amount" id="amount" type="number" required placeholder="Amount">
+        </div>
+        {% if form.amount.errors %}
+            {% for error in form.amount.errors %}
+            <p class="text-red-600 text-sm">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        <button class="bg-blue-900 text-white hover:text-blue-900 hover:bg-white border border-blue-900 font-bold px-4 py-2 rounded-lg" type="submit">
+            {% if title == 'Deposit' %}
+                Deposit Now
+            {% elif title == 'Withdraw' %}
+                Withdraw Now
+            {% elif title == 'Request For Loan' %}
+                Request Now
+            {% endif %}
+            
+        </button>
+    </form>
+</section>
+{% endblock main %}
